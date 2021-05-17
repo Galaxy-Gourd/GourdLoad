@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 namespace GG.Load
@@ -16,7 +18,7 @@ namespace GG.Load
         /// The path in the assets folder pointing to the load hook prefab; this must be present in project
         /// in order to redirect to the game scene.
         /// </summary>
-        private const string CONST_LoadingObjectResourcesPath = "Loading/PF_ProjectLoadHook";
+        private const string CONST_LoadHookPrefabAddress = "ProjectLoadHook";
 
         #endregion VARIABLES
         
@@ -26,7 +28,7 @@ namespace GG.Load
         private void Awake()
         {
             SpawnPersistentObjects();
-            LoadProjectLoadHook();
+            StartCoroutine(nameof(LoadProjectLoadHook));
         }
 
         #endregion INITIALIZATION
@@ -43,22 +45,26 @@ namespace GG.Load
             }
         }
         
-        private void LoadProjectLoadHook()
+        private IEnumerator LoadProjectLoadHook()
         {
-            // Instantiate the loading object if it has been defined in the project
-            GameObject hookObj = Resources.Load<GameObject>(CONST_LoadingObjectResourcesPath);
-            if (hookObj != null)
+            // Load project loader prefab using defined address
+            AsyncOperationHandle<GameObject> loadHandle = 
+                Addressables.LoadAssetAsync<GameObject>(CONST_LoadHookPrefabAddress);
+            yield return loadHandle;
+            
+            if(loadHandle.Status == AsyncOperationStatus.Succeeded)
             {
-                GameObject loader = Instantiate(hookObj);
+                GameObject loader = Instantiate(loadHandle.Result);
                 if (loader.TryGetComponent(out IProjectStartupLoader startup))
                 {
                     StartCoroutine(nameof(StartupSceneLoadTime), startup);
-                    return;
                 }
             }
-            
-            // If we get this far, we did not find a load hook in the assets folder - continue loading game scene
-            LoadGameSceneFromStartupScene();
+            else
+            {
+                // If we get this far, we did not find a load hook - continue loading game scene
+                LoadGameSceneFromStartupScene();
+            }
         }
 
         /// <summary>
