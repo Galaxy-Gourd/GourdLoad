@@ -1,0 +1,15 @@
+{
+  "name": "com.galaxygourd.ggload",
+  "version": "1.0.0",
+  "displayName": "GG Load",
+  "description": "Loading system.",
+  "unity": "2019.4",
+  "dependencies": {
+    "com.galaxygourd.ggdatabase": "1.0.0",
+    "com.galaxygourd.ggdataunity": "1.0.0"
+  },
+  "author": {
+    "name": "Galaxy Gourd",
+    "email": "mstephens.dev@gmail.com"
+  }
+}
