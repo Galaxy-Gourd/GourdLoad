@@ -20,7 +20,7 @@ namespace GG.Load
         /// </summary>
         private const string CONST_LoadHookPrefabAddress = "ProjectLoadHook";
 
-        #endregion VARIABLES
+        #endregion VARIABLES 
         
         
         #region INITIALIZATION
