@@ -18,7 +18,7 @@ namespace GG.Load
         /// The path in the assets folder pointing to the load hook prefab; this must be present in project
         /// in order to redirect to the game scene.
         /// </summary>
-        private const string CONST_LoadHookPrefabAddress = "ProjectLoadHook";
+        private const string CONST_AddressLoadHookPrefab = "ProjectLoadHook";
 
         #endregion VARIABLES 
         
@@ -49,7 +49,7 @@ namespace GG.Load
         {
             // Load project loader prefab using defined address
             AsyncOperationHandle<GameObject> loadHandle = 
-                Addressables.LoadAssetAsync<GameObject>(CONST_LoadHookPrefabAddress);
+                Addressables.LoadAssetAsync<GameObject>(CONST_AddressLoadHookPrefab);
             yield return loadHandle;
             
             if(loadHandle.Status == AsyncOperationStatus.Succeeded)
