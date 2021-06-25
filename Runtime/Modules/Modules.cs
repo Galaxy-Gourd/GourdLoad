@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GG.Data.Base;
 using UnityEngine;
 
-namespace GG.Load
+namespace GGLoad
 {
     public static class Modules 
     {

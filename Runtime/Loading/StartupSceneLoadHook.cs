@@ -5,7 +5,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
-namespace GG.Load
+namespace GGLoad
 {
     public class StartupSceneLoadHook : MonoBehaviour
     {

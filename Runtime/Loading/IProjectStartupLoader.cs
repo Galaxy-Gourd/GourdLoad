@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace GG.Load
+namespace GGLoad
 {
     /// <summary>
     /// This can be implemented by a project class and attached to the project loader prefab to provide

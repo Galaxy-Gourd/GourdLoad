@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GG.Load
+namespace GGLoad
 {
     /// <summary>
     /// Entry point for project loading - LoadStart uses the
