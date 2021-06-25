@@ -34,6 +34,21 @@ namespace GG.Load
 
             return result;
         }
+        
+        public static T Get<T>(string id) where T : class, IModule
+        {
+            T result = default(T);
+            foreach (IModule module in _set)
+            {
+                if (module is T modInterface && module.ID == id)
+                {
+                    result = modInterface;
+                    break;
+                }
+            }
+
+            return result;
+        }
 
         #endregion MODULES
         
