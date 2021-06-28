@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using GG.Data.Base;
-using GG.Data.Unity;
+using GGDataBase;
+using GGDataUnity;
 using UnityEngine;
 
 namespace GGLoad
